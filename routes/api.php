@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\QuizController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/quizes',[QuizController::class,'quizes'])->name('quizes');
+Route::post('/quizes',[QuizController::class,'store'])->name('quizes.store');
+Route::post('/quiz/questions',[QuizController::class,'storeQuestion'])->name('quiz.questions.store');
+Route::post('/quiz/question/answers',[QuizController::class,'storeQuestionAnswer'])->name('quize.question.answers.store');
