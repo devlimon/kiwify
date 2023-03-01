@@ -21,25 +21,25 @@ class QuizController extends Controller
 
     public function store(QuizRequest $data){
       
-        Quiz::create([
+        $quiz=Quiz::create([
             'title'=>$data['title'],
             'description'=>$data['description'],
         ]);
 
-        return response()->json(['success'=>true,'errors'=>null,'data'=>$data->request]);
+        return response()->json(['success'=>true,'errors'=>null,'data'=>$quiz]);
 
 
     }
 
     public function storeQuestion(QuizQuestionRequest $data){
       
-        QuizQuestion::create([
+        $question=QuizQuestion::create([
             'quiz_id'=>$data['quiz_id'],
             'title'=>$data['title'],
             'is_mandatory'=>$data['is_mandatory']??'no',
         ]);
 
-        return response()->json(['success'=>true,'errors'=>null,'data'=>$data->request]);
+        return response()->json(['success'=>true,'errors'=>null,'data'=>$question]);
 
 
     }
@@ -47,13 +47,13 @@ class QuizController extends Controller
 
     public function storeQuestionAnswer(QuizQuestionAnswerRequest $data){
       
-        QuizQuestionAnswer::create([
+        $answer=QuizQuestionAnswer::create([
             'question_id'=>$data['question_id'],
             'title'=>$data['title'],
             'is_correct'=>$data['is_correct']??'no',
         ]);
 
-        return response()->json(['success'=>true,'errors'=>null,'data'=>$data->request]);
+        return response()->json(['success'=>true,'errors'=>null,'data'=>$answer]);
 
 
     }
